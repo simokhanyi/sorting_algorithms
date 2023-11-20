@@ -1,34 +1,36 @@
-#ifndef SORT_H
-#define SORT_H
+#ifndef _SORT_H_
+#define _SORT_H_
 
-#include <stddef.h>
+#include <stdlib.h>
 
 /**
- * struct listint_s - Doubly linked list node structure
+ * struct listint_s - Doubly linked list node
+ *
  * @n: Integer stored in the node
  * @prev: Pointer to the previous element of the list
  * @next: Pointer to the next element of the list
  */
 typedef struct listint_s
 {
-    int n;
-    struct listint_s *prev;
-    struct listint_s *next;
+	const int n;
+	struct listint_s *prev;
+	struct listint_s *next;
 } listint_t;
 
-/* Function declaration */
-void bubble_sort(int *array, size_t size);
-listint_t *swap_node(listint_t *node, listint_t **list);
-
-/* Function prototypes */
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
-listint_t *create_listint(const int *array, size_t size);
+void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
-void swap(int *a, int *b);
-int lomuto_partition(int *array, int low, int high, size_t size);
-void quicksort(int *array, int low, int high, size_t size);
 void quick_sort(int *array, size_t size);
+void _qsort(int *a, int low, int high, int size);
+void shell_sort(int *array, size_t size);
+void _ssort(int *a, int size, int n);
+void cocktail_sort_list(listint_t **list);
+void counting_sort(int *array, size_t size);
+void merge_sort(int *array, size_t size);
+void heap_sort(int *array, size_t size);
+void radix_sort(int *array, size_t size);
+void bitonic_sort(int *array, size_t size);
 
-#endif /* SORT_H */
+#endif

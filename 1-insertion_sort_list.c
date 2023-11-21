@@ -1,68 +1,40 @@
 #include "sort.h"
+#include <stdio.h>
 
 /**
- * insertion_sort_list - Sorts a doubly linked list of integers
- * @list: Pointer to a pointer to the head of the list
- *
- * Description: Implements Insertion Sort algorithm on a doubly linked list.
- *              It sorts the list in ascending order by rearranging the nodes
- *              based on their integer values.
- */
-
+* insertion_sort_list - Sorts a doubly linked list of
+* integers in ascending order
+*
+* @list: Pointer to the pointer of the head of the list
+* Return: void, nothin to return
+*/
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *node = (*list)->next;
+	listint_t *current, *tmp;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
-	{
 		return;
-	}
 
-	while (node != NULL)
+	for (current = (*list)->next; current != NULL; current = current->next)
 	{
-		while (node->prev != NULL && node->prev->n > node->n)
+		tmp = current;
+		while (tmp->prev != NULL && tmp->n < tmp->prev->n)
 		{
-			node = swap_node(node, list);
+
+			if (tmp->next != NULL)
+				tmp->next->prev = tmp->prev;
+
+			tmp->prev->next = tmp->next;
+			tmp->next = tmp->prev;
+			tmp->prev = tmp->prev->prev;
+			tmp->next->prev = tmp;
+
+			if (tmp->prev != NULL)
+				tmp->prev->next = tmp;
+			else
+				*list = tmp;
+
 			print_list(*list);
 		}
-		node = node->next;
 	}
-}
-
-/**
- * swap_node - Swaps a node with its previous node in a doubly linked list
- * @node: Node to be swapped
- * @list: Pointer to the head of the list
- * Return: Pointer to the node after swapping
- */
-
-listint_t *swap_node(listint_t *node, listint_t **list)
-{
-	listint_t *prev = node->prev;
-	listint_t *next = node->next;
-
-	prev->next = next;
-
-	if (node == NULL || *list == NULL || node->prev == NULL)
-	{
-		return (NULL);
-	}
-
-	if (next != NULL)
-	{
-		next->prev = prev;
-	}
-	node->prev = prev->prev;
-	node->next = prev;
-
-	if (node->prev != NULL)
-	{
-		node->prev->next = node;
-	} else
-	{
-		*list = node;
-	}
-	prev->prev = node;
-
-	return (node);
 }

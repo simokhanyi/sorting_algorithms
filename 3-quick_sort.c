@@ -24,35 +24,35 @@ void quick_sort(int *array, size_t size)
  */
 void _quick_sort_rec(int *a, int low, int high, int size)
 {
-	int p, w, i;
-	int tmp;
+	int r, s, i;
+	int tempo;
 
 	if (low < high)
 	{
-		p = high;
-		w = low;
+		r = high;
+		s = low;
 		for (i = low; i < high; i++)
 		{
-			if (a[i] < a[p])
+			if (a[i] < a[r])
 			{
-				if (i != w)
+				if (i != s)
 				{
-					tmp = a[i];
-					a[i] = a[w];
-					a[w] = tmp;
+					tempo = a[i];
+					a[i] = a[s];
+					a[s] = tempo;
 					print_array(a, size);
 				}
-				w++;
+				s++;
 			}
 		}
-		if (w != p && a[w] != a[p])
+		if (s != r && a[s] != a[r])
 		{
-			tmp = a[w];
-			a[w] = a[p];
-			a[p] = tmp;
+			tempo = a[s];
+			a[s] = a[r];
+			a[r] = tempo;
 			print_array(a, size);
 		}
-		_qsort_sort_rec(a, low, w - 1, size);
-		_quick_sort_rec(a, w + 1, high, size);
+		_quick_sort_rec(a, low, s - 1, size);
+		_quick_sort_rec(a, s + 1, high, size);
 	}
 }

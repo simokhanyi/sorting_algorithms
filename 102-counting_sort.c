@@ -44,7 +44,7 @@ void counting_sort(int *array, size_t size)
 		buffer[array[m]] -= 1;
 	}
 	for (m = 0; m < (int)size; m++)
-		array[m] = a[m];
+		array[m] = y[m];
 
 	free(buffer);
 	free(y);

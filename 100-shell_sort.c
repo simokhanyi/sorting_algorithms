@@ -27,7 +27,7 @@ void shell_sort(int *array, size_t size)
  * @n: intervale
  * Return: nothing to return
  */
-  void knut_shell_sort(int *a, int size, int n)
+void knut_shell_sort(int *a, int size, int n)
 {
 	int tempo, i, j;
 

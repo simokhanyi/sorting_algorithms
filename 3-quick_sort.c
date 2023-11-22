@@ -1,4 +1,5 @@
 #include "sort.h"
+#include <stdio.h>
 
 /**
  * swap - Swaps two integer values
@@ -64,6 +65,9 @@ void _quick_sort_rec(int *array, int low, int high)
 	{
 		pi = lomuto_partition(array, low, high);
 
+		printf("\n");
+		print_array(array + low, high - low + 1);
+
 		_quick_sort_rec(array, low, pi - 1);
 		_quick_sort_rec(array, pi + 1, high);
 	}
@@ -86,5 +90,7 @@ void quick_sort(int *array, size_t size)
 		return;
 	}
 
-    _quick_sort_rec(array, 0, size - 1);
+	_quick_sort_rec(array, 0, size - 1);
+	printf("\n");
+	print_array(array, size);
 }
